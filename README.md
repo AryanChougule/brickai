@@ -14,6 +14,8 @@ primitives rather than repeated per component.
 Next.js 15 (App Router) · TypeScript · Tailwind CSS v4 · React Three Fiber ·
 Three.js · Drei · GSAP (ScrollTrigger) · Framer Motion · Lenis · React Icons
 
+**Live:** https://brickai-rouge.vercel.app · **Admin:** /admin
+
 ## Getting started
 
 ```bash
@@ -23,6 +25,37 @@ npm run dev
 ```bash
 npm run build
 ```
+
+## Deployment
+
+Deployed on Vercel from this repository. Required environment variables are
+documented in `.env.example`; generate the admin pair with
+`npm run admin:password -- "your-password"`.
+
+### ⚠ One thing is not yet live: enquiry delivery
+
+Vercel's filesystem is read-only, so the append-only enquiry log and the admin's
+content overrides **cannot be written in production**. This deployment is
+configured webhook-only, which means:
+
+| Feature | Production status |
+| --- | --- |
+| Every public page, media, video, OG images | Fully working |
+| Admin login and session | Fully working |
+| Admin viewing (inventory, testimonials) | Fully working |
+| Admin **saving** edits | Read-only — edits do not persist |
+| Contact form | **Needs `ENQUIRY_WEBHOOK_URL`** |
+
+Until a webhook is set the contact form tells visitors it cannot deliver, rather
+than accepting a message that would reach nobody. Set it with:
+
+```bash
+vercel env add ENQUIRY_WEBHOOK_URL production
+```
+
+To restore the durable inbox and persistent admin edits, add a database and
+reimplement `lib/cms/enquiries.ts` and `lib/cms/overrides.ts` — they are the
+only two modules that touch storage.
 
 ## Architecture
 
