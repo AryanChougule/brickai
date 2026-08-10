@@ -1,0 +1,268 @@
+/* ==========================================================================
+   Base element styles, keyframes and structural utilities.
+   ========================================================================== */
+
+@layer base {
+  * {
+    /* Radius 0 everywhere is a system rule, not a per-component choice. */
+    border-radius: 0;
+  }
+
+  html {
+    background: var(--color-ground);
+    color-scheme: dark;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Lenis drives scrolling; native smooth-scroll would fight it. Anchor
+     offsets are handled by scroll-margin on the section targets. */
+  html:not(.lenis) {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    background: var(--color-ground);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1.55;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0;
+    font-weight: 800;
+    line-height: 1.12;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
+
+  p {
+    margin: 0;
+    text-wrap: pretty;
+  }
+
+  a {
+    color: var(--color-accent-text);
+    text-decoration: none;
+    text-underline-offset: 3px;
+  }
+
+  a:hover {
+    color: var(--color-accent-soft);
+  }
+
+  img,
+  svg,
+  canvas,
+  video {
+    display: block;
+    max-width: 100%;
+  }
+
+  code,
+  pre {
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    color: var(--color-accent-soft);
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--color-accent) 45%, transparent);
+    color: var(--color-ink);
+  }
+
+  /* Focus: 2px solid accent, offset 2px. Applies to every interactive node. */
+  :focus {
+    outline: none;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  /* Sections are anchor targets under a 64px fixed nav. */
+  [id] {
+    scroll-margin-top: calc(var(--nav-h) + 16px);
+  }
+
+  input,
+  textarea,
+  select,
+  button {
+    font: inherit;
+    color: inherit;
+  }
+
+  ::placeholder {
+    color: var(--color-ink-faint);
+    opacity: 1;
+  }
+}
+
+/* — keyframes ————————————————————————————————————————————————————————— */
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes sweep {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes pulse-rule {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* — structural utilities ————————————————————————————————————————————— */
+
+/* Horizontal page gutter. One knob, set in theme.css. */
+@utility px-page {
+  padding-inline: var(--page-x);
+}
+
+@utility mx-page {
+  margin-inline: var(--page-x);
+}
+
+/* Vertical section rhythm: 96 top / 80 bottom, fluid under 768px. */
+@utility section-y {
+  padding-block: var(--section-pt) var(--section-pb);
+}
+
+@utility section-pt {
+  padding-top: var(--section-pt);
+}
+
+/* The 2px section rule. */
+@utility rule-t {
+  border-top: 2px solid var(--color-divider);
+}
+
+@utility rule-b {
+  border-bottom: 2px solid var(--color-divider);
+}
+
+@utility rule-r {
+  border-right: 2px solid var(--color-divider);
+}
+
+@utility rule-l {
+  border-left: 2px solid var(--color-divider);
+}
+
+@utility rule-all {
+  border: 2px solid var(--color-divider);
+}
+
+/* Card grids: 2px gaps over a divider-colored ground. The gap IS the border. */
+@utility grid-hairline {
+  gap: 2px;
+  background: var(--color-divider);
+  border: 2px solid var(--color-divider);
+}
+
+@utility grid-hairline-inner {
+  gap: 2px;
+  background: rgba(248, 244, 244, 0.18);
+  border: 1px solid rgba(248, 244, 244, 0.18);
+}
+
+/* 48px technical grid underlay, matching the hero canvas. */
+@utility wire-grid {
+  background-image: linear-gradient(var(--color-wire) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-wire) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+@utility grayscale-media {
+  filter: grayscale(1) contrast(1.08);
+}
+
+/* Screen-reader-only, unhidden on focus for the skip link. */
+@utility sr-only-focusable {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+
+  &:focus-visible {
+    position: fixed;
+    width: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    clip-path: none;
+  }
+}
+
+/* All hit targets 44px or larger on touch. */
+@utility touch-target {
+  min-width: 44px;
+  min-height: 44px;
+}
+
+/* — reduced motion ————————————————————————————————————————————————————
+   Canvas effects render one static frame and stop their RAF loop; CSS
+   animation is removed outright. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,154 @@
+/* ==========================================================================
+   BrickAI design tokens — dark remix of the Modernist system.
+   Source of truth: "Developer Handoff — BrickAI.com build spec" v1.0.
+
+   Ground, ink, type, rhythm and rule weights are quoted from that spec; do not
+   invent new ones. The accent is the one deliberate departure: the brand moved
+   from red to orange, so the accent ramp and the text-on-accent pairing were
+   retuned here. See the accent block below for the measured contrast figures.
+   ========================================================================== */
+
+@theme {
+  /* — ground ————————————————————————————————————————————————————————— */
+  --color-ground: #171515; /* page background */
+  --color-ground-raised: #1a1818; /* alternate panels */
+  --color-ground-hover: #201d1d; /* card hover, one step lighter */
+  --color-ground-hover-soft: #1c1919; /* wide row hover */
+  --color-ground-deep: #0f0d0d; /* media wells */
+  --color-ground-graph: #131111; /* canvas fields */
+  --color-ground-black: #000000; /* inverse button active */
+
+  /* — ink ——————————————————————————————————————————————————————————— */
+  --color-ink: #f3f2f2; /* primary text */
+  --color-ink-dim: #d7d3d3; /* body copy inside panels */
+  --color-ink-soft: #bab6b6; /* nav links, tag text */
+  --color-ink-mute: #9b9797; /* secondary text */
+  --color-ink-faint: #7d7979; /* meta, numerals */
+  --color-ink-ghost: #605d5d; /* placeholder labels */
+  --color-ink-vapor: #444141; /* placeholder sub-labels */
+
+  /* — accent ————————————————————————————————————————————————————————
+     Orange on near-black. Every value below is measured against the ground:
+
+       accent       on ground  5.7:1   fills, display type, primary CTA
+       accent-text  on ground  9.5:1   small text and labels
+       accent-soft  on ground 12.6:1   hover text, emphasis lines
+       ground       on accent  5.7:1   text ON an accent fill
+
+     That last row is the one that decides the poster fields. Orange carries far
+     more luminance than a red at the same saturation, so light text on an accent
+     fill lands near 2.8:1 — unusable. Dark ink on orange is both the accessible
+     pairing and the canonical industrial one. */
+  --color-accent: #f26511;
+  --color-accent-hover: #d95309; /* accent-600 */
+  --color-accent-active: #b04204; /* accent-700 */
+  --color-accent-text: #ffa76b; /* accent-400 — AA on ground */
+  --color-accent-soft: #ffcda8; /* accent-300 — hover text, emphasis */
+  --color-accent-deep: #7d3606; /* accent-800 */
+
+  /* — accent alphas ———————————————————————————————————————————————————
+     Derived from the two accent tokens rather than written as literal rgba(),
+     so retuning the hue above carries through every rule, wash and border on
+     the site. Canvas and satori surfaces cannot read CSS variables and keep
+     their own literals — three/config.ts, KnowledgeGraph.tsx, api/og. */
+  --color-accent-rule: color-mix(in srgb, var(--color-accent) 60%, transparent);
+  --color-accent-edge: color-mix(in srgb, var(--color-accent) 55%, transparent);
+  --color-accent-field: color-mix(in srgb, var(--color-accent) 50%, transparent);
+  --color-accent-wash: color-mix(in srgb, var(--color-accent) 14%, transparent);
+  --color-accent-veil: color-mix(in srgb, var(--color-accent) 9%, transparent);
+  --color-accent-hairline: color-mix(
+    in srgb,
+    var(--color-accent-text) 40%,
+    transparent
+  );
+
+  /* — rules ——————————————————————————————————————————————————————————
+     The 2px section rule is structural. Never hairline-soften it. */
+  --color-divider: rgba(248, 244, 244, 0.22);
+  --color-hairline: rgba(248, 244, 244, 0.14);
+  --color-wire: rgba(248, 244, 244, 0.06); /* grid underlays */
+  --color-edge: rgba(248, 244, 244, 0.35); /* secondary button border */
+
+  /* — type ————————————————————————————————————————————————————————————
+     Single family: Archivo 400 / 600 / 800. Display sizes are fluid.
+     All type flush left — no centered copy anywhere on the site. */
+  --font-sans: var(--font-archivo), "Archivo", system-ui, sans-serif;
+  --font-mono: ui-monospace, Menlo, "Cascadia Code", monospace;
+
+  --text-display: clamp(56px, 8.4vw, 148px);
+  --text-display--line-height: 0.96;
+  --text-display--letter-spacing: -0.03em;
+  --text-display--font-weight: 800;
+
+  --text-poster: clamp(48px, 6.4vw, 110px);
+  --text-poster--line-height: 0.98;
+  --text-poster--letter-spacing: -0.03em;
+  --text-poster--font-weight: 800;
+
+  --text-h2: clamp(36px, 4.4vw, 72px);
+  --text-h2--line-height: 1.02;
+  --text-h2--letter-spacing: -0.025em;
+  --text-h2--font-weight: 800;
+
+  --text-h3: clamp(28px, 2.8vw, 44px);
+  --text-h3--line-height: 1.06;
+  --text-h3--letter-spacing: -0.02em;
+  --text-h3--font-weight: 800;
+
+  --text-h4: 24px;
+  --text-h4--line-height: 1.12;
+  --text-h4--letter-spacing: -0.02em;
+  --text-h4--font-weight: 800;
+
+  --text-quote: clamp(28px, 3.2vw, 52px);
+  --text-quote--line-height: 1.12;
+  --text-quote--letter-spacing: -0.02em;
+  --text-quote--font-weight: 800;
+
+  --text-kicker: 12px;
+  --text-kicker--line-height: 1.4;
+  --text-kicker--letter-spacing: 0.14em;
+  --text-kicker--font-weight: 600;
+
+  --text-micro: 10px;
+  --text-micro--line-height: 1.4;
+  --text-micro--letter-spacing: 0.12em;
+  --text-micro--font-weight: 600;
+
+  /* — motion ————————————————————————————————————————————————————————
+     Hover states tint or step down the ramp. Never scale, never lift. */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --duration-hover: 150ms;
+  --duration-entrance: 900ms;
+
+  /* — radius ————————————————————————————————————————————————————————
+     Never round a corner. */
+  --radius-none: 0px;
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+
+  /* — breakpoints (spec section 6) ——————————————————————————————————— */
+  --breakpoint-sm: 480px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1440px;
+}
+
+/* Layout rhythm. Page padding 40px, collapsing to 24px under 768px.
+   Section padding 96px top / 80px bottom, fluid on small screens. */
+:root {
+  --page-x: 40px;
+  --section-pt: 96px;
+  --section-pb: 80px;
+  --nav-h: 64px;
+}
+
+@media (width < 768px) {
+  :root {
+    --page-x: 24px;
+    --section-pt: 64px;
+    --section-pb: 56px;
+  }
+}

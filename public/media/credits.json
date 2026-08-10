@@ -1,0 +1,202 @@
+{
+  "generated": "2026-08-09T04:22:24.800Z",
+  "licence": {
+    "name": "Pexels License",
+    "url": "https://www.pexels.com/license/",
+    "commercialUse": true,
+    "attributionRequired": false,
+    "watermarked": false
+  },
+  "assets": [
+    {
+      "id": "auto-see",
+      "file": "/media/auto-see.jpg",
+      "kind": "photo",
+      "description": "Automated factory conveyor system running at production speed",
+      "width": 3200,
+      "height": 2133,
+      "bytes": 1148811,
+      "source": "https://www.pexels.com/photo/34222005/"
+    },
+    {
+      "id": "auto-predict",
+      "file": "/media/auto-predict.jpg",
+      "kind": "photo",
+      "description": "Engineer monitoring plant systems across screens in a control room",
+      "width": 3200,
+      "height": 2133,
+      "bytes": 696970,
+      "source": "https://www.pexels.com/photo/32845700/"
+    },
+    {
+      "id": "auto-act",
+      "file": "/media/auto-act.jpg",
+      "kind": "photo",
+      "description": "Industrial warehouse with a forklift moving stock between racking",
+      "width": 3200,
+      "height": 2133,
+      "bytes": 1524093,
+      "source": "https://www.pexels.com/photo/36398150/"
+    },
+    {
+      "id": "work-vision-qc-packaging-line",
+      "file": "/media/work-vision-qc.jpg",
+      "kind": "photo",
+      "description": "High-speed canning line filling containers on a packaging machine",
+      "width": 3200,
+      "height": 2133,
+      "bytes": 780422,
+      "source": "https://www.pexels.com/photo/5532675/"
+    },
+    {
+      "id": "work-autonomous-freight-quoting-agent",
+      "file": "/media/work-freight-agent.jpg",
+      "kind": "photo",
+      "description": "Articulated freight truck on a mountain highway",
+      "width": 3200,
+      "height": 2133,
+      "bytes": 528675,
+      "source": "https://www.pexels.com/photo/34902065/"
+    },
+    {
+      "id": "work-oee-platform-machine-builder",
+      "file": "/media/work-oee-platform.jpg",
+      "kind": "photo",
+      "description": "Manufacturing assembly line equipment on a plant floor",
+      "width": 3200,
+      "height": 4800,
+      "bytes": 1820830,
+      "source": "https://www.pexels.com/photo/34221993/"
+    },
+    {
+      "id": "work-claims-document-intelligence",
+      "file": "/media/work-claims.jpg",
+      "kind": "photo",
+      "description": "Clinical monitoring equipment in a hospital treatment room",
+      "width": 3200,
+      "height": 4800,
+      "bytes": 2109836,
+      "source": "https://www.pexels.com/photo/3844581/"
+    },
+    {
+      "id": "work-field-service-offline-app",
+      "file": "/media/work-field-service.jpg",
+      "kind": "photo",
+      "description": "Workers moving through a distribution warehouse aisle",
+      "width": 3200,
+      "height": 2134,
+      "bytes": 1008016,
+      "source": "https://www.pexels.com/photo/4487383/"
+    },
+    {
+      "id": "industry-manufacturing",
+      "file": "/media/industry-manufacturing.jpg",
+      "kind": "photo",
+      "description": "Industrial robot arm working in a manufacturing facility",
+      "width": 3200,
+      "height": 2133,
+      "bytes": 918544,
+      "source": "https://www.pexels.com/photo/34207359/"
+    },
+    {
+      "id": "industry-healthcare",
+      "file": "/media/industry-healthcare.jpg",
+      "kind": "photo",
+      "description": "CT scanner in a hospital imaging room",
+      "width": 3200,
+      "height": 2133,
+      "bytes": 367288,
+      "source": "https://www.pexels.com/photo/13176452/"
+    },
+    {
+      "id": "industry-retail",
+      "file": "/media/industry-retail.jpg",
+      "kind": "photo",
+      "description": "Stocked grocery shelving viewed down a store aisle",
+      "width": 3200,
+      "height": 2134,
+      "bytes": 865923,
+      "source": "https://www.pexels.com/photo/16211537/"
+    },
+    {
+      "id": "industry-logistics",
+      "file": "/media/industry-logistics.jpg",
+      "kind": "photo",
+      "description": "Intermodal shipping containers stacked at a port terminal",
+      "width": 3200,
+      "height": 2142,
+      "bytes": 864866,
+      "source": "https://www.pexels.com/photo/1427541/"
+    },
+    {
+      "id": "industry-construction",
+      "file": "/media/industry-construction.jpg",
+      "kind": "photo",
+      "description": "Tower cranes standing over an active construction site",
+      "width": 3200,
+      "height": 4798,
+      "bytes": 1211632,
+      "source": "https://www.pexels.com/photo/30396647/"
+    },
+    {
+      "id": "industry-agriculture",
+      "file": "/media/industry-agriculture.jpg",
+      "kind": "photo",
+      "description": "Agricultural drone spraying a crop field",
+      "width": 3200,
+      "height": 2135,
+      "bytes": 757090,
+      "source": "https://www.pexels.com/photo/34182370/"
+    },
+    {
+      "id": "industry-education",
+      "file": "/media/industry-education.jpg",
+      "kind": "photo",
+      "description": "Tiered university lecture hall seating",
+      "width": 2902,
+      "height": 2073,
+      "bytes": 635766,
+      "source": "https://www.pexels.com/photo/356065/"
+    },
+    {
+      "id": "industry-finance",
+      "file": "/media/industry-finance.jpg",
+      "kind": "photo",
+      "description": "Financial district towers seen from street level",
+      "width": 3200,
+      "height": 2133,
+      "bytes": 961839,
+      "source": "https://www.pexels.com/photo/936721/"
+    },
+    {
+      "id": "industry-government",
+      "file": "/media/industry-government.jpg",
+      "kind": "photo",
+      "description": "Dome of a state capitol building",
+      "width": 3200,
+      "height": 5687,
+      "bytes": 2562488,
+      "source": "https://www.pexels.com/photo/34223492/"
+    },
+    {
+      "id": "industry-automotive",
+      "file": "/media/industry-automotive.jpg",
+      "kind": "photo",
+      "description": "Robotics operating inside a car factory",
+      "width": 3200,
+      "height": 2137,
+      "bytes": 890356,
+      "source": "https://www.pexels.com/photo/19319639/"
+    },
+    {
+      "id": "auto-walkthrough",
+      "file": "/media/plant-walkthrough.mp4",
+      "kind": "video",
+      "description": "Overhead footage of an industrial production process running",
+      "width": 2560,
+      "height": 1440,
+      "bytes": 15589977,
+      "source": "https://www.pexels.com/video/32268481/"
+    }
+  ]
+}

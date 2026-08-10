@@ -39,3 +39,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Atomic-write temp files for the content store
+content/*.tmp
+
+# Contact-form submissions contain personal data — never commit these
+content/enquiries.jsonl
+content/enquiry-status.json
