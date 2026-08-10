@@ -46,3 +46,6 @@ content/*.tmp
 # Contact-form submissions contain personal data — never commit these
 content/enquiries.jsonl
 content/enquiry-status.json
+
+.vercel
+.env*

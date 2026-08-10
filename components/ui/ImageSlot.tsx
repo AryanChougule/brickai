@@ -46,6 +46,18 @@ export function ImageSlot({
           fill
           sizes={sizes}
           priority={priority}
+          /*
+           * Remote sources bypass the optimizer.
+           *
+           * `/_next/image` rejects any host not in `images.remotePatterns` with
+           * a 400, and the admin deliberately accepts arbitrary https URLs as
+           * an escape hatch. Allowlisting `**` would instead turn this site's
+           * optimizer into an open image proxy for the whole internet. Serving
+           * remote URLs unoptimized costs a little bandwidth on what is meant
+           * to be a temporary source; vendored local files — the normal path —
+           * are still fully optimized.
+           */
+          unoptimized={isRemote(slot.src)}
           className="object-cover"
         />
       ) : (
@@ -53,6 +65,11 @@ export function ImageSlot({
       )}
     </figure>
   );
+}
+
+/** Local public paths start with "/"; anything else is another origin. */
+function isRemote(src: string) {
+  return /^https?:\/\//i.test(src);
 }
 
 function Placeholder({ caption, id }: { caption: string; id: string }) {

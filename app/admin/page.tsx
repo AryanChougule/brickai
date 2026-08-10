@@ -246,6 +246,58 @@ export default async function AdminPage() {
           className="mb-10"
         />
 
+        <div className="mb-10 max-w-[80ch] border border-divider p-6 text-sm text-ink-dim">
+          <p className="mb-4 text-micro uppercase text-accent-text">
+            Where to put a new image
+          </p>
+
+          <ol className="flex flex-col gap-4">
+            <li>
+              <strong className="font-extrabold text-ink">
+                1 · Drop the file in <code>public/media/</code>
+              </strong>
+              <p className="mt-1">
+                Everything under <code>public/</code> is served from the site
+                root, so <code>public/media/line.jpg</code> becomes{" "}
+                <code>/media/line.jpg</code>. That is what you type in the
+                Source field below — the <code>public</code> part is never in
+                the URL.
+              </p>
+            </li>
+            <li>
+              <strong className="font-extrabold text-ink">
+                2 · Commit and push
+              </strong>
+              <p className="mt-1">
+                The file has to be in the repository to exist on the deployed
+                site. Vercel rebuilds on push and the image goes live.
+              </p>
+            </li>
+            <li>
+              <strong className="font-extrabold text-ink">
+                3 · Set the path — permanently
+              </strong>
+              <p className="mt-1">
+                Edits made here are stored in{" "}
+                <code>content/overrides.json</code>, which{" "}
+                <strong className="text-accent-soft">
+                  cannot be written on this deployment
+                </strong>
+                . For a change that survives, add the file to{" "}
+                <code>lib/media/manifest.ts</code> against the slot id instead,
+                then commit. This panel is the right tool locally; the manifest
+                is the right tool for production.
+              </p>
+            </li>
+          </ol>
+
+          <p className="mt-5 border-t border-hairline pt-4 text-[13px] text-ink-faint">
+            An <code>https://</code> URL also works and needs no file at all,
+            but it renders unoptimised and breaks if the far end moves it — fine
+            for trying something out, not for launch.
+          </p>
+        </div>
+
         <div className="flex flex-col gap-12">
           {Object.entries(groups).map(([group, rows]) => (
             <section key={group}>
