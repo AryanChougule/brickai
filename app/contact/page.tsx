@@ -59,9 +59,29 @@ export default function ContactPage() {
             <dl className="mt-10 flex flex-col gap-4 text-sm">
               <div className="flex gap-3">
                 <dt className="w-24 shrink-0 text-micro uppercase opacity-80">
+                  Speak to
+                </dt>
+                <dd className="font-extrabold">{site.contact.name}</dd>
+              </div>
+              <div className="flex gap-3">
+                <dt className="w-24 shrink-0 text-micro uppercase opacity-80">
                   Email
                 </dt>
-                <dd className="font-extrabold">{site.email}</dd>
+                <dd className="font-extrabold">
+                  <a href={`mailto:${site.contact.email}`} className="underline">
+                    {site.contact.email}
+                  </a>
+                </dd>
+              </div>
+              <div className="flex gap-3">
+                <dt className="w-24 shrink-0 text-micro uppercase opacity-80">
+                  Phone
+                </dt>
+                <dd className="font-extrabold">
+                  <a href={site.contact.phoneHref} className="underline">
+                    {site.contact.phone}
+                  </a>
+                </dd>
               </div>
               <div className="flex gap-3">
                 <dt className="w-24 shrink-0 text-micro uppercase opacity-80">

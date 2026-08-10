@@ -10,12 +10,28 @@ export const site = {
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://brickai.com",
   locale: "en_US",
   founded: "2026",
-  email: "hello@brickai.com",
+
+  /**
+   * Who an enquiry actually reaches. Kept as one object so the contact page,
+   * the form's failure message and the JSON-LD cannot drift apart.
+   */
+  contact: {
+    name: "Aryan Chougule",
+    email: "aryanchougule4747@gmail.com",
+    /** Display form, with spacing for readability. */
+    phone: "+91 9373447919",
+    /** Dial form — `tel:` needs no spaces to work reliably on mobile. */
+    phoneHref: "tel:+919373447919",
+  },
+
   cta: {
     label: "Book discovery call",
     href: "/contact",
   },
 } as const;
+
+/** Shorthand — used wherever only the address is needed. */
+export const contactEmail = site.contact.email;
 
 /** Primary navigation, in spec order. */
 export const navLinks = [

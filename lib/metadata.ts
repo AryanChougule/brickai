@@ -72,7 +72,15 @@ export function organizationSchema() {
     name: site.name,
     url: site.url,
     description: site.description,
-    email: site.email,
+    email: site.contact.email,
+    telephone: site.contact.phone,
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "sales",
+      name: site.contact.name,
+      email: site.contact.email,
+      telephone: site.contact.phone,
+    },
     foundingDate: site.founded,
     slogan: site.tagline,
     knowsAbout: [

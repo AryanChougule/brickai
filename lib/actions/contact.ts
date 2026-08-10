@@ -79,7 +79,7 @@ export async function submitEnquiry(
       status: "error",
       message:
         "We could not deliver your message. Please email us directly at " +
-        `${site.email} — we will pick it up from there.`,
+        `${site.contact.email} — we will pick it up from there.`,
       errors: {},
       values,
     };

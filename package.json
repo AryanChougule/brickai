@@ -4,10 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "node scripts/hash-media.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "media": "node scripts/fetch-media.mjs",
+    "media": "node scripts/fetch-media.mjs && node scripts/hash-media.mjs",
+    "media:hash": "node scripts/hash-media.mjs",
     "admin:password": "node scripts/admin-password.mjs"
   },
   "dependencies": {

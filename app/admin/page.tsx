@@ -248,53 +248,81 @@ export default async function AdminPage() {
 
         <div className="mb-10 max-w-[80ch] border border-divider p-6 text-sm text-ink-dim">
           <p className="mb-4 text-micro uppercase text-accent-text">
-            Where to put a new image
+            How images work here
           </p>
 
           <ol className="flex flex-col gap-4">
             <li>
               <strong className="font-extrabold text-ink">
-                1 · Drop the file in <code>public/media/</code>
+                1 · Put the file in <code>public/media/</code>
               </strong>
               <p className="mt-1">
                 Everything under <code>public/</code> is served from the site
-                root, so <code>public/media/line.jpg</code> becomes{" "}
-                <code>/media/line.jpg</code>. That is what you type in the
-                Source field below — the <code>public</code> part is never in
-                the URL.
+                root, so <code>public/media/line.jpg</code> is reached at{" "}
+                <code>/media/line.jpg</code>. The word <code>public</code> never
+                appears in the URL.
               </p>
             </li>
             <li>
               <strong className="font-extrabold text-ink">
-                2 · Commit and push
+                2 · Set Source to <code>/media/&lt;filename&gt;</code>
               </strong>
               <p className="mt-1">
-                The file has to be in the repository to exist on the deployed
-                site. Vercel rebuilds on push and the image goes live.
+                Type the plain path — <code>/media/line.jpg</code>. Do not add a
+                version or a query string; the build appends a content hash for
+                you.
               </p>
             </li>
             <li>
               <strong className="font-extrabold text-ink">
-                3 · Set the path — permanently
+                3 · Commit and push to GitHub
               </strong>
               <p className="mt-1">
-                Edits made here are stored in{" "}
-                <code>content/overrides.json</code>, which{" "}
-                <strong className="text-accent-soft">
-                  cannot be written on this deployment
-                </strong>
-                . For a change that survives, add the file to{" "}
-                <code>lib/media/manifest.ts</code> against the slot id instead,
-                then commit. This panel is the right tool locally; the manifest
-                is the right tool for production.
+                GitHub is the source of truth for production images. Pushing
+                triggers a Vercel deployment automatically — there is no manual
+                deploy step and no cache to purge by hand.
               </p>
             </li>
           </ol>
 
+          <div className="mt-5 border-t border-hairline pt-4">
+            <p className="mb-2 text-micro uppercase text-accent-text">
+              Replacing an existing image
+            </p>
+            <p>
+              <strong className="font-extrabold text-ink">
+                Keep the same filename.
+              </strong>{" "}
+              Overwrite <code>public/media/line.jpg</code> with the new picture
+              and push. Every build re-hashes the files in{" "}
+              <code>public/media/</code>, so the URL becomes{" "}
+              <code>/media/line.jpg?v=&lt;hash&gt;</code> and the hash changes
+              only when the bytes do. That is what stops the optimizer serving
+              the old picture — renaming files to defeat caching is unnecessary,
+              and renaming means editing every slot that referenced the old name.
+            </p>
+          </div>
+
+          <div className="mt-5 border-t border-hairline pt-4">
+            <p className="mb-2 text-micro uppercase text-accent-text">
+              Where a change is saved
+            </p>
+            <p>
+              Edits here write <code>content/overrides.json</code>, which{" "}
+              <strong className="text-accent-soft">
+                cannot be written on this deployment
+              </strong>
+              . Use this panel locally, then commit the file. For a permanent
+              default, set the slot in <code>lib/media/manifest.ts</code>{" "}
+              instead. Either way the committed repository stays the durable
+              source of truth — nothing is written at runtime in production.
+            </p>
+          </div>
+
           <p className="mt-5 border-t border-hairline pt-4 text-[13px] text-ink-faint">
-            An <code>https://</code> URL also works and needs no file at all,
-            but it renders unoptimised and breaks if the far end moves it — fine
-            for trying something out, not for launch.
+            An <code>https://</code> URL also works and needs no file, but it is
+            served unoptimised and breaks if the far end moves it — fine for
+            trying something out, not for launch.
           </p>
         </div>
 
