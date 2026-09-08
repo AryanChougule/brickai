@@ -66,6 +66,7 @@ function MediaWell({
         <ImageSlot
           slot={image}
           grayscale
+          annotate
           className="absolute inset-0 h-full"
           sizes="(max-width: 1024px) 100vw, 50vw"
         />

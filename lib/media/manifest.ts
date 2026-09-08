@@ -41,9 +41,10 @@ export const remoteAssets: RemoteAsset[] = [
     id: "auto-see",
     kind: "photo",
     file: "/media/auto-see.jpg",
-    url: "https://images.pexels.com/photos/34222005/pexels-photo-34222005/free-photo-of-automated-factory-conveyor-system-in-operation.jpeg",
-    photoId: "34222005",
-    description: "Automated factory conveyor system running at production speed",
+    url: "https://images.pexels.com/photos/8438976/pexels-photo-8438976.jpeg",
+    photoId: "8438976",
+    description:
+      "Robotic arm carrying a machine-vision camera, inspecting at close range",
     licence: "Pexels",
   },
   {
@@ -59,9 +60,9 @@ export const remoteAssets: RemoteAsset[] = [
     id: "auto-act",
     kind: "photo",
     file: "/media/auto-act.jpg",
-    url: "https://images.pexels.com/photos/36398150/pexels-photo-36398150.jpeg",
-    photoId: "36398150",
-    description: "Industrial warehouse with a forklift moving stock between racking",
+    url: "https://images.pexels.com/photos/34194567/pexels-photo-34194567.jpeg",
+    photoId: "34194567",
+    description: "Industrial robot arm executing a programmed motion on the line",
     licence: "Pexels",
   },
 
@@ -70,9 +71,10 @@ export const remoteAssets: RemoteAsset[] = [
     id: "work-vision-qc-packaging-line",
     kind: "photo",
     file: "/media/work-vision-qc.jpg",
-    url: "https://images.pexels.com/photos/5532675/pexels-photo-5532675.jpeg",
-    photoId: "5532675",
-    description: "High-speed canning line filling containers on a packaging machine",
+    url: "https://images.pexels.com/photos/16544056/pexels-photo-16544056.jpeg",
+    photoId: "16544056",
+    description:
+      "Close-up of an industrial robotic arm in a production environment",
     licence: "Pexels",
   },
   {
@@ -209,9 +211,9 @@ export const remoteAssets: RemoteAsset[] = [
     id: "auto-walkthrough",
     kind: "video",
     file: "/media/plant-walkthrough.mp4",
-    url: "https://videos.pexels.com/video-files/32268481/13762729_2560_1440_60fps.mp4",
-    photoId: "32268481",
-    description: "Overhead footage of an industrial production process running",
+    url: "https://videos.pexels.com/video-files/32386590/13814640_2560_1440_100fps.mp4",
+    photoId: "32386590",
+    description: "Robotics operating on an automated factory line",
     licence: "Pexels",
   },
 ];

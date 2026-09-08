@@ -14,7 +14,7 @@ primitives rather than repeated per component.
 Next.js 15 (App Router) · TypeScript · Tailwind CSS v4 · React Three Fiber ·
 Three.js · Drei · GSAP (ScrollTrigger) · Framer Motion · Lenis · React Icons
 
-**Live:** https://brickai-rouge.vercel.app · **Admin:** /admin
+**Live:** https://brickai-systems.vercel.app · **Admin:** /admin
 
 ## Getting started
 

@@ -1,5 +1,5 @@
 {
-  "generated": "2026-08-09T04:22:24.800Z",
+  "generated": "2026-09-08T18:39:18.210Z",
   "licence": {
     "name": "Pexels License",
     "url": "https://www.pexels.com/license/",
@@ -12,11 +12,11 @@
       "id": "auto-see",
       "file": "/media/auto-see.jpg",
       "kind": "photo",
-      "description": "Automated factory conveyor system running at production speed",
+      "description": "Robotic arm carrying a machine-vision camera, inspecting at close range",
       "width": 3200,
-      "height": 2133,
-      "bytes": 1148811,
-      "source": "https://www.pexels.com/photo/34222005/"
+      "height": 2136,
+      "bytes": 807386,
+      "source": "https://www.pexels.com/photo/8438976/"
     },
     {
       "id": "auto-predict",
@@ -32,21 +32,21 @@
       "id": "auto-act",
       "file": "/media/auto-act.jpg",
       "kind": "photo",
-      "description": "Industrial warehouse with a forklift moving stock between racking",
+      "description": "Industrial robot arm executing a programmed motion on the line",
       "width": 3200,
       "height": 2133,
-      "bytes": 1524093,
-      "source": "https://www.pexels.com/photo/36398150/"
+      "bytes": 426534,
+      "source": "https://www.pexels.com/photo/34194567/"
     },
     {
       "id": "work-vision-qc-packaging-line",
       "file": "/media/work-vision-qc.jpg",
       "kind": "photo",
-      "description": "High-speed canning line filling containers on a packaging machine",
+      "description": "Close-up of an industrial robotic arm in a production environment",
       "width": 3200,
-      "height": 2133,
-      "bytes": 780422,
-      "source": "https://www.pexels.com/photo/5532675/"
+      "height": 2400,
+      "bytes": 392386,
+      "source": "https://www.pexels.com/photo/16544056/"
     },
     {
       "id": "work-autonomous-freight-quoting-agent",
@@ -192,11 +192,11 @@
       "id": "auto-walkthrough",
       "file": "/media/plant-walkthrough.mp4",
       "kind": "video",
-      "description": "Overhead footage of an industrial production process running",
+      "description": "Robotics operating on an automated factory line",
       "width": 2560,
       "height": 1440,
-      "bytes": 15589977,
-      "source": "https://www.pexels.com/video/32268481/"
+      "bytes": 11503698,
+      "source": "https://www.pexels.com/video/32386590/"
     }
   ]
 }

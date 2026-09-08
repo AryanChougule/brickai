@@ -1,4 +1,6 @@
 import Image from "next/image";
+import { DetectionOverlay } from "@/components/media/DetectionOverlay";
+import { detectionsFor } from "@/lib/media/detections";
 import { cn } from "@/lib/utils";
 import type { MediaSlot } from "@/lib/types";
 
@@ -10,6 +12,12 @@ interface ImageSlotProps {
   /** Passed to next/image; set for above-the-fold slots only. */
   priority?: boolean;
   sizes?: string;
+  /**
+   * Draw the illustrative detection boxes registered for this slot, when it has
+   * any. Off by default so the annotation only appears where a caption explains
+   * it.
+   */
+  annotate?: boolean;
 }
 
 /**
@@ -29,12 +37,13 @@ export function ImageSlot({
   className,
   priority,
   sizes = "(max-width: 768px) 100vw, 50vw",
+  annotate = false,
 }: ImageSlotProps) {
+  const boxes = annotate ? detectionsFor(slot.id) : undefined;
   return (
     <figure
       className={cn(
         "relative w-full overflow-hidden bg-ground-deep",
-        grayscale && "grayscale-media",
         className,
       )}
       style={slot.aspect ? { aspectRatio: slot.aspect } : undefined}
@@ -58,11 +67,19 @@ export function ImageSlot({
            * are still fully optimized.
            */
           unoptimized={isRemote(slot.src)}
-          className="object-cover"
+          /* The treatment sits on the photo, not the figure: a filter on the
+             wrapper would desaturate the annotation overlay too. */
+          className={cn("object-cover", grayscale && "grayscale-media")}
         />
       ) : (
-        <Placeholder caption={slot.caption} id={slot.id} />
+        <div className={cn(grayscale && "grayscale-media")}>
+          <Placeholder caption={slot.caption} id={slot.id} />
+        </div>
       )}
+
+      {/* Only over a real photograph — boxes on an empty placeholder would be
+          annotating nothing. */}
+      {slot.src && boxes ? <DetectionOverlay boxes={boxes} /> : null}
     </figure>
   );
 }

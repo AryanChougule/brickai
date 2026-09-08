@@ -95,7 +95,7 @@ export const automationStages = [
     // captioned as our inspection overlay would be claiming something untrue.
     slot: {
       id: "auto-see",
-      caption: "A production line running at inspection speed",
+      caption: "A vision camera on the line — annotation shown for illustration",
       aspect: "4 / 3",
     },
   },

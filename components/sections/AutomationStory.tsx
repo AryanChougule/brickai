@@ -178,6 +178,9 @@ export function AutomationStory({
                 <ImageSlot
                   slot={stage.slot}
                   grayscale
+                  /* The registry decides: only vision slots have boxes, so
+                     Predict and Act pass through untouched. */
+                  annotate
                   className="border border-divider"
                 />
               </div>
