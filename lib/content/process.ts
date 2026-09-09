@@ -89,8 +89,8 @@ export const automationStages = [
   {
     num: "01",
     name: "See",
-    body: "Cameras over every line, models beside them. Each unit is inspected, counted and traced at production speed — no sampling, no clipboard.",
-    meta: "Industrial vision · edge GPUs · 400 units/min",
+    body: "Encoder-triggered strobes freeze every unit in the same place in frame, so the model never has to learn around motion blur — that single choice moves accuracy more than any architecture change. Inference runs quantised on a line-side GPU and the verdict reaches the reject actuator through the PLC, never over the network.",
+    meta: "TensorRT INT8 · cross-polarised strobe · 8ms verdict · 400 units/min",
     // Captions describe the photograph, not a product screen. A stock image
     // captioned as our inspection overlay would be claiming something untrue.
     slot: {
@@ -102,8 +102,8 @@ export const automationStages = [
   {
     num: "02",
     name: "Predict",
-    body: "Machine signals stream into one timeline: vibration, temperature, cycle times. The models flag the bearing that will fail on Thursday — on Monday.",
-    meta: "OPC-UA · Kafka · predictive maintenance",
+    body: "Vibration, motor current and cycle time land on one clock in a hypertable. Bearing wear appears as sidebands around shaft frequency in the envelope spectrum weeks before it appears as heat or noise — the model watches that drift and raises it while the part is still cheap to swap.",
+    meta: "OPC-UA · envelope FFT · TimescaleDB continuous aggregates",
     slot: {
       id: "auto-predict",
       caption: "Machine signals watched from the plant control room",
@@ -113,8 +113,8 @@ export const automationStages = [
   {
     num: "03",
     name: "Act",
-    body: "The loop closes without a meeting: work orders raised, parts reserved, the line rebalanced. People handle the exceptions — the system handles the routine.",
-    meta: "Agentic AI · ERP/MES integration · human sign-off on exceptions",
+    body: "A flagged asset becomes a work order with the part reserved and a window chosen against the production schedule rather than a maintenance calendar. Every write carries an idempotency key, so a retried message never opens the job twice. People approve the exceptions; the routine goes through untouched.",
+    meta: "Agentic AI · MES/ERP write-back · idempotent writes · human sign-off",
     slot: {
       id: "auto-act",
       caption: "Parts and stock moving on the floor after the call is made",

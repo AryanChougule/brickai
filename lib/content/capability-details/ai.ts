@@ -129,18 +129,24 @@ export const aiCapabilityDetails: Record<string, CapabilityDetail> = {
       layers: [
         {
           title: "Capture",
-          caption: "Deterministic optics and triggering",
+          caption: "Deterministic optics — where half the accuracy is won",
           nodes: [
-            "Area / line-scan cameras",
-            "Strobe lighting",
+            "Line-scan / area cameras",
+            "Cross-polarised strobe",
             "Encoder trigger",
-            "Calibration target",
+            "Telecentric lens",
+            "Shift-start calibration target",
           ],
         },
         {
           title: "Edge inference",
-          caption: "Beside the conveyor, no network in the loop",
-          nodes: ["Frame grabber", "TensorRT engine", "Tracker", "Decision rules"],
+          caption: "Beside the conveyor — 8ms, no network in the loop",
+          nodes: [
+            "Frame grabber",
+            "TensorRT INT8 engine",
+            "Multi-object tracker",
+            "Operating-point thresholds",
+          ],
           accent: true,
         },
         {
@@ -155,12 +161,13 @@ export const aiCapabilityDetails: Record<string, CapabilityDetail> = {
         },
         {
           title: "Model lifecycle",
-          caption: "The loop that keeps accuracy from decaying",
+          caption: "The loop that keeps accuracy from decaying at changeover",
           nodes: [
             "Review UI",
-            "Labelling queue",
-            "Retraining",
+            "Active-learning queue",
+            "Per-SKU retraining",
             "Shadow deployment",
+            "Drift monitoring",
           ],
         },
       ],
@@ -214,7 +221,12 @@ export const aiCapabilityDetails: Record<string, CapabilityDetail> = {
       {
         question: "How many images do you need to start?",
         answer:
-          "Between 200 and 2,000 per defect class for a first usable model. Where defects are genuinely rare we bootstrap with synthetic and augmented data, then replace it as real examples accumulate.",
+          "Between 200 and 2,000 per defect class for a first usable model — but the count matters less than the coverage. Two hundred images spanning every shift, every lighting condition and every supplier batch beats two thousand from one Tuesday afternoon. Where defects are genuinely rare we bootstrap with synthetic and augmented data, then retire it as real examples accumulate.",
+      },
+      {
+        question: "How do you balance missed defects against false rejects?",
+        answer:
+          "That trade is a business decision, not a model one, so we make it explicit. We plot the precision-recall curve on your data and you choose the operating point: a scrapped good unit costs you the unit, a shipped bad one costs you the customer. Those numbers differ per SKU, so the threshold is configuration rather than a constant, and it is reviewable without a redeploy.",
       },
       {
         question: "Does it need to reach the internet?",
@@ -224,7 +236,7 @@ export const aiCapabilityDetails: Record<string, CapabilityDetail> = {
       {
         question: "What happens when the product changes?",
         answer:
-          "New SKUs go through the same review-and-retrain loop that keeps existing accuracy from decaying — typically a few days from first samples to a shadow-deployed model.",
+          "Changeover is the failure mode that kills most vision deployments, so it is designed for rather than discovered. New SKUs run in shadow mode against the existing line — scoring every unit, actuating nothing — until the confusion matrix on real production clears the agreed bar. Typically a few days from first samples to a model that is allowed to reject.",
       },
     ],
   },
