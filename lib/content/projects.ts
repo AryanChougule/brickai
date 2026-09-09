@@ -14,14 +14,14 @@ export const projects: Project[] = [
     tags: ["Computer Vision", "Manufacturing", "Edge AI"],
     description:
       "Real-time defect detection on a 400-unit/minute line, running on edge GPUs beside the conveyor — with a review UI the QA team actually uses.",
-    before: "3.1% defect escape",
-    after: "0.2% escape",
+    before: "2,400 PPM escape",
+    after: "180 PPM escape",
     media: "Line-side camera footage",
     industry: "manufacturing",
     capabilities: ["computer-vision", "factory-automation"],
     featured: true,
     challenge:
-      "Inspection was a 2% manual sample on a line running 400 units a minute, which meant defects were discovered by customers rather than by the plant. Two prior vendor trials had failed: one could not hold accuracy across SKU changeovers, the other needed a network round trip the line speed did not allow.",
+      "Inspection was a 2% AQL sample on a line running 400 units a minute, so roughly 2,400 parts per million reached the customer before anyone saw them. Two prior vendor trials had failed: one could not hold accuracy across SKU changeovers, the other needed a network round trip the line speed did not allow.",
     approach: [
       {
         title: "Fix the optics before the model",
@@ -41,7 +41,8 @@ export const projects: Project[] = [
       },
     ],
     outcomes: [
-      { label: "Defect escape rate", value: "3.1% → 0.2%" },
+      { label: "Defect escape", value: "2,400 → 180 PPM" },
+      { label: "False reject", value: "0.9%" },
       { label: "Units inspected", value: "2% → 100%" },
       { label: "Decision latency", value: "8ms" },
       { label: "Scrap cost per month", value: "−$35k" },

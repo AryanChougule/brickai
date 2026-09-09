@@ -126,7 +126,7 @@ export const automationStages = [
 /** Stat pair shown under the Act stage. */
 export const automationStats = [
   { label: "Unplanned downtime", value: "−38%", accent: false },
-  { label: "Defect escape", value: "0.2%", accent: true },
+  { label: "Defect escape", value: "180 PPM", accent: true },
 ] as const;
 
 /** About quadrants. */

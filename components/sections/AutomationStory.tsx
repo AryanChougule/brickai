@@ -3,8 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap, ScrollTrigger } from "@/animations/gsap";
 import { AnomalyTimeline } from "@/components/results/AnomalyTimeline";
+import { InferenceStream } from "@/components/results/InferenceStream";
 import { OeeBreakdown } from "@/components/results/OeeBreakdown";
-import { ImageSlot } from "@/components/ui/ImageSlot";
 import { Section } from "@/components/ui/Section";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { StatCell } from "@/components/ui/StatPair";
@@ -178,24 +178,19 @@ export function AutomationStory({
 
               <div data-stage-item className="mt-6 max-w-[720px]">
                 {/*
-                  Each stage shows its own output rather than a photograph of
-                  the environment. "See" produces an annotated frame, so the
-                  photo with detection boxes is the result. "Predict" and "Act"
-                  produce data, so a picture of a control room would be set
-                  dressing — the trace and the shift roll-up are the actual
-                  deliverable.
+                  Every stage renders its own output rather than a photograph
+                  of the environment. A picture of a camera does not show that
+                  a verdict lands on every unit; a picture of a control room
+                  does not show a bearing being caught six days early. The
+                  stream, the trace and the shift roll-up are the deliverable,
+                  so they are what the section shows.
                 */}
-                {stage.name === "Predict" ? (
+                {stage.name === "See" ? (
+                  <InferenceStream />
+                ) : stage.name === "Predict" ? (
                   <AnomalyTimeline />
-                ) : stage.name === "Act" ? (
-                  <OeeBreakdown />
                 ) : (
-                  <ImageSlot
-                    slot={stage.slot}
-                    grayscale
-                    annotate
-                    className="border border-divider"
-                  />
+                  <OeeBreakdown />
                 )}
               </div>
             </article>

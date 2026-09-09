@@ -11,23 +11,36 @@ import { ResultPanel } from "@/components/results/ResultPanel";
  */
 
 const DAYS = 30;
-/** Day the model raises the alert; failure would land at day 30. */
+/** Day the model raises it — while the machine is still inside Zone B. */
 const FLAG_DAY = 22;
 
-/** RMS velocity in mm/s — ISO 10816 territory, so the numbers read as real. */
+/**
+ * ISO 10816-3, Group 2 (medium machines, 15–75 kW, rigid mount). The zone
+ * boundaries are the standard's, not invented:
+ *   Zone A ≤ 1.4   newly commissioned
+ *   Zone B ≤ 2.8   acceptable for unrestricted long-term running
+ *   Zone C ≤ 4.5   unsatisfactory — plan an intervention
+ *   Zone D  > 4.5  unacceptable — damage is occurring
+ *
+ * The point of the chart is that the alert fires inside Zone B, six days
+ * before the machine reaches Zone D, which is the whole commercial argument
+ * for condition monitoring over a calendar.
+ */
 function rms(day: number) {
-  const baseline = 1.8 + Math.sin(day * 0.7) * 0.06;
-  // Wear is negligible until the defect propagates, then compounds.
-  const wear = day < 14 ? 0 : Math.pow((day - 14) / 16, 2.4) * 6.2;
+  const baseline = 1.05 + Math.sin(day * 0.7) * 0.05;
+  // Negligible until the spall propagates, then compounds.
+  const wear = day < 16 ? 0 : Math.pow((day - 16) / 14, 1.8) * 4.6;
   return baseline + wear;
 }
 
 const W = 640;
 const H = 200;
 const PAD = { top: 14, right: 14, bottom: 22, left: 34 };
-const MAX_Y = 9;
-/** ISO alarm band for this machine class. */
-const THRESHOLD = 4.5;
+const MAX_Y = 6;
+/** Zone B/C — plan an intervention. */
+const ALERT = 2.8;
+/** Zone C/D — damage is occurring. */
+const DANGER = 4.5;
 
 const x = (day: number) =>
   PAD.left + (day / DAYS) * (W - PAD.left - PAD.right);
@@ -46,36 +59,49 @@ export function AnomalyTimeline() {
   return (
     <ResultPanel
       title="Bearing envelope — drive-end, motor 3"
-      meta="RMS mm/s · 30d · ISO 10816"
+      meta="RMS mm/s · 30d · ISO 10816-3 Grp 2"
     >
       <svg
         viewBox={`0 0 ${W} ${H}`}
         className="h-auto w-full"
         role="img"
-        aria-label={`Vibration rises from 1.8 to ${rms(DAYS).toFixed(1)} millimetres per second over 30 days. The model flags it on day ${FLAG_DAY}, eight days before the alarm threshold would be reached.`}
+        aria-label={`Bearing vibration rises from 1.1 to ${rms(DAYS).toFixed(1)} millimetres per second RMS over 30 days. The model raises it on day ${FLAG_DAY} at 2.05, still inside ISO 10816-3 Zone B, six days before the machine reaches Zone D.`}
       >
-        {/* Alarm band */}
-        <line
-          x1={PAD.left}
-          x2={W - PAD.right}
-          y1={y(THRESHOLD)}
-          y2={y(THRESHOLD)}
-          stroke="rgba(255,167,107,0.45)"
-          strokeWidth="1"
-          strokeDasharray="4 4"
-        />
-        <text
-          x={W - PAD.right}
-          y={y(THRESHOLD) - 6}
-          textAnchor="end"
-          className="fill-[var(--color-accent-text)]"
-          style={{ fontSize: 9, letterSpacing: "0.12em" }}
-        >
-          ALARM 4.5
-        </text>
+        {/* ISO 10816-3 zone boundaries */}
+        {[
+          { v: ALERT, label: "ZONE C 2.8", dim: true },
+          { v: DANGER, label: "ZONE D 4.5", dim: false },
+        ].map((band) => (
+          <g key={band.label}>
+            <line
+              x1={PAD.left}
+              x2={W - PAD.right}
+              y1={y(band.v)}
+              y2={y(band.v)}
+              stroke={
+                band.dim ? "rgba(255,167,107,0.35)" : "rgba(242,101,17,0.7)"
+              }
+              strokeWidth="1"
+              strokeDasharray="4 4"
+            />
+            <text
+              x={W - PAD.right}
+              y={y(band.v) - 5}
+              textAnchor="end"
+              className={
+                band.dim
+                  ? "fill-[var(--color-ink-faint)]"
+                  : "fill-[var(--color-accent)]"
+              }
+              style={{ fontSize: 9, letterSpacing: "0.12em" }}
+            >
+              {band.label}
+            </text>
+          </g>
+        ))}
 
         {/* Y axis ticks */}
-        {[0, 3, 6, 9].map((v) => (
+        {[0, 2, 4, 6].map((v) => (
           <text
             key={v}
             x={PAD.left - 6}
@@ -138,9 +164,9 @@ export function AnomalyTimeline() {
 
       <dl className="mt-4 grid grid-cols-3 grid-hairline-inner">
         {[
-          { k: "Raised at", v: "2.9 mm/s" },
-          { k: "Lead time", v: "8 days", accent: true },
-          { k: "Alarm avoided", v: "4.5 mm/s" },
+          { k: "Raised at", v: "2.05 mm/s" },
+          { k: "Lead time to Zone D", v: "6 days", accent: true },
+          { k: "Zone at alert", v: "B (acceptable)" },
         ].map((s) => (
           <div key={s.k} className="bg-ground p-3">
             <dt className="text-micro uppercase text-ink-faint">{s.k}</dt>

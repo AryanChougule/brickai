@@ -54,7 +54,7 @@ export const aiCapabilityDetails: Record<string, CapabilityDetail> = {
         {
           label: "First response time",
           before: "6h 20m",
-          after: "9s",
+          after: "4s",
           note: "Median across all channels",
         },
         { label: "Tier-1 volume reaching an agent", before: "100%", after: "24%" },
@@ -176,15 +176,31 @@ export const aiCapabilityDetails: Record<string, CapabilityDetail> = {
       headline: "Defect escape rate cut by 90%+",
       payback: "Typical payback: 5–9 months",
       metrics: [
-        { label: "Defect escape rate", before: "3.1%", after: "0.2%" },
+        {
+          label: "Defect escape",
+          before: "2,400 PPM",
+          after: "180 PPM",
+          note: "Parts per million reaching the customer",
+        },
+        {
+          label: "False reject",
+          before: "—",
+          after: "0.9%",
+          note: "Good units wrongly scrapped — the cost of the trade",
+        },
         {
           label: "Units inspected",
-          before: "2% sample",
+          before: "2% AQL sample",
           after: "100%",
           note: "At 400 units/min line speed",
         },
         { label: "Inspection labour per shift", before: "3 FTE", after: "0.5 FTE" },
-        { label: "Scrap attributable to late detection", before: "$41k/mo", after: "$6k/mo" },
+        {
+          label: "Scrap from late detection",
+          before: "$41k/mo",
+          after: "$6k/mo",
+          note: "Detected at pack-out rather than at the customer",
+        },
         { label: "Decision latency", before: "manual, minutes", after: "8ms" },
       ],
     },
